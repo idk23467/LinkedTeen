@@ -8,6 +8,8 @@
     .box { max-width:800px; margin:auto; background:white; padding:40px; border-radius:16px; box-shadow:0 10px 30px rgba(0,0,0,0.1); }
     button { padding:14px 24px; border:none; border-radius:8px; cursor:pointer; margin:10px; }
     .survey { background:black; color:white; }
+    .email-form input[type="email"] { padding:12px; width:60%; border-radius:8px; border:1px solid #ccc; margin-right:10px; }
+    .email-form button { background:#4CAF50; color:white; }
   </style>
 </head>
 <body>
@@ -27,7 +29,11 @@
 
     <h2>Join the Early Access List</h2>
     <p>Be the first to know when we launch.</p>
-    <p>Add your email in our survey for early access updates.</p>
+    <form class="email-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <input type="email" name="email" placeholder="Entr your email" required>
+      <button type="submit">Join Now</button>
+    </form>
+    <p>We'll email you updates directly. No Google Form required!</p>
   </div>
 </body>
 </html>
