@@ -8,8 +8,8 @@
     .box { max-width:800px; margin:auto; background:white; padding:40px; border-radius:16px; box-shadow:0 10px 30px rgba(0,0,0,0.1); }
     button { padding:14px 24px; border:none; border-radius:8px; cursor:pointer; margin:10px; }
     .survey { background:black; color:white; }
-    .email-form input[type="email"] { padding:12px; width:60%; border-radius:8px; border:1px solid #ccc; margin-right:10px; }
-    .email-form button { background:#4CAF50; color:white; }
+    input[type="email"] { padding:12px; width:80%; max-width:300px; margin:10px 0; border-radius:8px; border:1px solid #ccc; }
+    .success { color: green; margin-top: 10px; font-weight: bold; }
   </style>
 </head>
 <body>
@@ -23,17 +23,41 @@
     <p><strong>Built by students. For students.</strong></p>
 
     <h2>Help Us Build LinkedTeen</h2>
-    <button class="survey" onclick="window.location.href='https://forms.gle/6iAx3ZRswu2xyPR47'">
+    <button class="survey" onclick="window.location.href='https://forms.gle/Td5kmXDkwQKC2dHD9'">
       Take the Survey
     </button>
 
     <h2>Join the Early Access List</h2>
     <p>Be the first to know when we launch.</p>
-    <form class="email-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+
+    <!-- Formspree Email Form -->
+    <form action="https://formspree.io/f/mkovdnry" method="POST">
       <input type="email" name="email" placeholder="Enter your email" required>
-      <button type="submit">Join Now</button>
+      <br>
+      <button type="submit">Join Early Access</button>
+      <div class="success" style="display:none;">Thanks! Your email has been submitted.</div>
     </form>
-    <p>Thank you for joining our email list!</p>
+
+    <script>
+      const form = document.querySelector('form');
+      const successMsg = document.querySelector('.success');
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const data = new FormData(form);
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+        if (response.ok) {
+          successMsg.style.display = 'block';
+          form.reset();
+        } else {
+          alert('Oops! There was a problem submitting your email.');
+        }
+      });
+    </script>
+
   </div>
 </body>
 </html>
